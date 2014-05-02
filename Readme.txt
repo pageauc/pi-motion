@@ -4,9 +4,13 @@
 
 Recently I have been working on a grive capable security camera using two types of security camera cases.  
 One is a small fake plastic security cam case from Amazon.  Model A or B fits inside with wifi only.
+
 http://www.amazon.com/gp/product/B004D8NZ52/ref=oh_details_o01_s00_i00?ie=UTF8&psc=1
+
 Here is a larger aluminum camera case that I have a model B installed in.  This one has room for a usb power supply etc..
+
 http://www.amazon.com/Monoprice-108431-Outdoor-Camera-Switchable/dp/B007VDTTTM/ref=sr_1_72?ie=UTF8&qid=1393884556&sr=8-72&keywords=fake+security+camera
+
 I may do a youtube video on How To setup these cases with the raspberry pi computer and camera module installed.
 
 After some work I now have the Raspberry Pi security camera's working efficiently from a software point of view.  
