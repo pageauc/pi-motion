@@ -13,6 +13,10 @@ http://www.amazon.com/Monoprice-108431-Outdoor-Camera-Switchable/dp/B007VDTTTM/r
 
 I may do a youtube video on How To setup these cases with the raspberry pi computer and camera module installed.
 
+Raspberry pi forum information on lightweight python motion detection topic
+
+http://www.raspberrypi.org/forums/viewtopic.php?f=43&t=45235&p=362504&sid=06ba253d0d74f92733bc6862a224aafe#p362504
+
 After some work I now have the Raspberry Pi security camera's working efficiently from a software point of view.  
 The current configuration uses a modified version of pimotion.py script to save files to a number sequence instead of a date-time sequence. 
 I also added some code (not mine) to optionally put date/time information directly on the photo images.  
