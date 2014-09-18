@@ -1,8 +1,22 @@
+                                          pimotion.py_2.0
                Raspberry Pi Python Motion Capture and goggle drive syncing using grive
                -----------------------------------------------------------------------
-      grive (google drive) capable raspberry pi security camera using python motion detection
+          grive (google drive) capable raspberry pi security camera using python motion detection
 
-Recently I have been working on a grive capable security camera using two types of security camera cases.  
+This is version 2.0 of pymotion.py with an option to use the picamera python module to take large photo rather than raspistill
+New Features
+- Changed setup.sh so it installs python-imaging and python-picamera by default. Note grive_setup.sh has been replaced
+- Added option to use picamera to take large photo instead of shelling out to raspian to run raspistill
+  Note small image still uses raspistill. 
+- Added picamera option to take low light photos during specified hours.  This dramatically improves
+  low light photos but don't use during bright light conditions or photos will be washed out
+- picamera option uses camera settings to make Daylight photo more consistent
+- Added makemovie.py to create a movie from contents of google_drive folder.
+
+Fixes
+- Fixed bug that crashes pimotion if numsequence is set to False caused by displaying initial settings information
+
+I have been working on a grive capable security camera using two types of security camera cases.  
 One is a small fake plastic security cam case from Amazon.  Model A or B fits inside with wifi only.
 
 http://www.amazon.com/gp/product/B004D8NZ52/ref=oh_details_o01_s00_i00?ie=UTF8&psc=1
@@ -33,7 +47,7 @@ To automate the security camera operation, I have setup pimotion.py to run from 
 by copying skeleton file to pimotion.sh script (sample included).  Then modified to run your pimotion.py script on boot.
 see later in post for more setup detail.
 
-You must have a raspberry pi model A or B with the latest raspbian build and pi camera module installed and working.  
+You must have a raspberry pi model A, B or B+ with the latest raspbian build and pi camera module installed and working.  
 There are several tutorials showing how to do this so it is not covered here. 
 This assumes you know how to cut and paste into nano or similar text editor on the pi using ssh. 
 You also need an operational internet connection via wifi or wired connection.  
@@ -51,20 +65,22 @@ Note change picam to a folder name of your choice if required.
 cd ~
 mkdir picam
 cd ./picam
-# Download pimotion.tar file from my github account
+# Download pimotion.tar file from my github account from a logged in ssh or terminal session on your raspberry pi.
 wget https://raw.github.com/pageauc/pi-motion-grive/master/pimotion.tar
 # Extract tar files to current folder
 tar -xvf pimotion.tar
 # Install required grive libraries from the internet
-sudo ./grive_setup.sh 
-# This will setup google drive security connection see details below
+./setup.sh 
+# Note this will take a while so be patient
+# This will explain how to setup google drive security connection (also explained below)
 # You will need to cut the rpi grive url displayed from above command
 # into chrome browser on pc with a logged in google account then past the resultant
 # security hash file back into grive via ssh session on rpi. 
 sudo ./grive -a        
 # Create a google_drive folder if it does not exist and start motion capture using pi camera module
+# Note the google_drive folder will be created when pimotion.py is first started if it does not already exist.
 
-sudo ./pimotion.py
+./pimotion.py
 
 ctrl-c to exit pimotion.py     
 
@@ -98,6 +114,11 @@ See later for details on settin up grive security and login to your google accou
 
 Setup init.d script to auto launch pimotion.py on boot-up of raspberry pi
 -------------------------------------------------------------------------
+Note there is a copy of the init.d pimotion.sh in the tar file so you should be able to copy if instead of the skeleton file method
+below if you wish  eg in the pimotion folder execute the following then skip to step 4
+sudo cp pimotion.sh /etc/init.d
+check permissions for the /etc/init.d/pimotion.sh to make sure it is executable  
+ls -al /etc/init.d/pimotion.sh
 
 cd /etc/init.d
 sudo cp skeleton pimotion.sh
