@@ -192,7 +192,7 @@ cd /etc/init.d
 if required change permissions for pimotion.sh
 chmod +x pimotion.sh
 sudo nano pimotion.sh   # change appropriate entries to point to your pimotion.py script and save the file ctrl-x
-sudo update-rc.d /etc/init.d/pimotion.sh defaults
+sudo update-rc.d pimotion.sh defaults
 cd ~
 
 Optional  (Only if you have setup grive security)
