@@ -78,38 +78,6 @@ tar -xvf pimotion.tar
 # Install required grive libraries from the internet
 sudo ./setup.sh 
 # Note this will take a while so be patient
-Optional
---------
-# This will explain how to setup google drive security connection (also explained below)
-# You will need to cut the rpi grive url displayed from above command
-# into chrome browser on pc with a logged in google account then past the resultant
-# security hash file back into grive via ssh session on rpi. 
-sudo ./grive -a        
-# Create a google_drive folder if it does not exist and start motion capture using pi camera module
-# Note the google_drive folder will be created when pimotion.py is first started if it does not already exist.
-
-./pimotion.py
-
-ctrl-c to exit pimotion.py     
-
-Setup grive security to your google account
--------------------------------------------
-From ssh session on raspberry pi execute the following
-
-sudo ./grive -a 
-
-perform the following
-Cut and paste the resulting grive url into chrome url box or other pc web browser that is logged into your google account
-Cut and paste the resulting web browser security code back to raspberry pi grive session.
-grive will indicate if the operation was successful
-
-Once grive has been initialized successfully with the grive -a option then
-copy the /home/pi/.grive and /home/pi/.grive_state files to the /home/pi/google_drive folder per above code. 
-This will allow grive to be executed from the /home/pi folder so it does not have to be in the google_drive folder.
-
-sudo cp ./.grive google_drive
-sudo cp ./.grive_state google_drive
-sudo ./sync.sh
 
 Change pimotion.py settings as required
 ---------------------------------------
@@ -124,8 +92,93 @@ nano pimotion.py
 Use nano editor to modify any pimotion.py script settings as required eg Threshold, Sensitivity, image prefix, numbering range, etc.  
 See code comments for details.
 I have the pimotion.py camera image settings set to flipped due to the camera module mounting position in the fake security camera case.
-You may also want to change sensitivity and/or threshold as needed as well as the filename prefix etc.  Ctrl-X to save and exit
+You may also want to change sensitivity and/or threshold as needed as well as the filename prefix etc.  Ctrl-X to save and exit nano editor.
 
+Details if you wish to compile grive yourself (Optional)
+--------------------------------------------------------
+You will need to download the tar file from the web link below and extract it on your raspberry pi or compile a modified version of grive in order to sync files to your google drive
+see instructions from url link below.  Compiling takes a little while and you must edit the specified /home/pi/grive/libgrive/src/drive/State.cc file per the web link below.  If you have problems read the posts.  When you initialize grive with google I opened an ssh session to the raspberry pi on my windows 7 PC and then cut and pasted the grive -a url to chrome browser while logged into google.  This takes you to a screen that returns a very long security code.  I then cut and pasted this into the RPI session and everything worked just fine.  I did not login to google on the pi.  I only needed the PC to be logged in and paste the authentication code back to the pi from the PC.  I don't think you need a logged in google account on the pi as the post mentions.  At any rate it worked for me and I had to try several times since I was trying to avoid having grive executable in the google_drive folder.  By using the -p option and copying the grive hidden config files to the rpi google_drive folder I managed to get everything to work.   
+http://raspberrywebserver.com/serveradmin/back-up-your-pi-to-your-google-drive.html
+or this link might be even better
+http://www.pihomeserver.fr/en/2013/08/15/raspberry-pi-home-server-synchroniser-le-raspberry-pi-avec-votre-google-drive/
+
+Once compile is successful copy the grive executable to the folder that pimotion.py and sync.sh are located
+
+Optional Setup grive security to your google account
+----------------------------------------------------
+If you want to synchronize image files to your google drive then follow the instructions below
+Note you must have a valid google account and google drive.
+On a PC open a web browser eg chrome and login to your google account and check that you have a google drive.
+Important
+---------
+It is recommended that any documents you have be moved to a separate google drive folder eg my_files.  This will prevent
+these files from getting sync'd back to the Raspberry PI.
+You can also perform this operation from a RPI desktop terminal and web browser if you like.  Just make sure you are logged into google.
+from ssh session or RPI desktop terminal session
+
+cd ~
+cd picam    # or name of folder you chose
+sudo ./grive -a
+
+This will display a web browser url.
+You will need to highlight the displayed url on the RPI and paste into the PC or RPI web browser URL bar. 
+Note if you are using putty ssh then right click to paste RPI highlighted url into the PC's web browser url bar 
+The url will open a new web page and display a security hash token.  Copy and paste this security token into grive via ssh session on rpi. 
+if grive -a session hit enter to accept security token. grive will indicate if the operation was successful
+
+If you previously ran pimotion.py then a google_drive folder should already be created under the picam folder (or whatever folder you picked)
+If it does not exist run 
+
+./pimotion.py
+
+to create google_drive or manually create using mkdir command if desired.
+
+Once grive has been initialized successfully with the grive -a option then
+copy the /home/pi/.grive and /home/pi/.grive_state files to the /home/pi/google_drive folder per above code. 
+This will allow grive to be executed from the /home/pi folder so it does not have to be in the google_drive folder.
+
+sudo cp ./.grive google_drive
+sudo cp ./.grive_state google_drive
+sudo ./sync.sh
+
+You should see grive handshake with your google account and synchronize files both ways between google and the RPI
+
+Test pimotion.py and sync.sh together
+-------------------------------------
+To test you can launch pimotion.py from one ssh session and sync.sh from a second ssh terminal session. 
+Note: This can also be done from the RPI desktop using two terminal sessions.
+
+First terminal session
+----------------------
+cd ~
+cd picam  # or whatever folder name you used.
+sudo ./pimotion.py
+
+Second terminal session
+-----------------------
+From a second ssh terminal run sync.sh (make sure that motion was detected and files are in the google_drive folder to sync).  
+You should see a /home/pi/sync.lock file.  This is created by pimotion.py when motion photos were created.
+
+cd ~
+cd picam  # or whatever folder name you used.
+sudo ./sync.sh
+
+You should see files being synchronized in both directions.  This is normal.  
+There are google drive apps for Apple, Android, Mac and PC.  Just do a search for google drive in the appropriate app/play store 
+This will allow you to access your google drive on the web to view the raspberry pi motion capture security camera images
+You can also download and install the google drive windows application to your PC.
+Make sure you have a wifi or wired network connection to the internet that will start when the RPI boots headless.
+see setup for crontab and init.d setup for further details
+pymotion.py should start automatically and save images to the google_drive folder.  When the crontab is executed it will
+initiate a sync of images to your google drive on the web.  
+ 
+Note:
+-----
+I also setup a cronjob to reboot the rpi once a day but this may not be necessary for you.  
+I did it since I intend to leave the rpi security camera run remotely and this gives a chance for system to recover should there be a glitch.
+Also if you have problems check permissions.  The init.d will run as root so the files in the google_drive folder will be owned by root.  
+Just check to make sure you run with sudo ./pimotion.sh and sudo ./sync.sh if you are in terminal sessions.
+Once you know sync.sh is working OK you can automate the sync by running it in as a cronjob.
 
 Setup init.d script to auto launch pimotion.py on boot-up of raspberry pi
 -------------------------------------------------------------------------
@@ -141,42 +194,6 @@ chmod +x pimotion.sh
 sudo nano pimotion.sh   # change appropriate entries to point to your pimotion.py script and save the file ctrl-x
 sudo update-rc.d /etc/init.d/pimotion.sh defaults
 cd ~
-
-Details if you wish to compile grive yourself (Optional)
---------------------------------------------------------
-You will need to download the tar file and extract it on your raspberry pi or compile a modified version of  grive in order to sync files to your google drive
-see instructions url link below.  Compiling takes a little while and you must edit the specified /home/pi/grive/libgrive/src/drive/State.cc file per the web link below.  If you have problems read the posts.  When you initialize grive with google I opened an ssh session to the raspberry pi on my windows 7 PC and then cut and pasted the grive -a url to chrome browser while logged into google.  This takes you to a screen that returns a very long security code.  I then cut and pasted this into the RPI session and everything worked just fine.  I did not login to google on the pi.  I only needed the PC to be logged in and paste the authentication code back to the pi from the PC.  I don't think you need a logged in google account on the pi as the post mentions.  At any rate it worked for me and I had to try several times since I was trying to avoid having grive executable in the google_drive folder.  By using the -p option and copying the grive hidden config files to the rpi google_drive folder I managed to get everything to work.   
-http://raspberrywebserver.com/serveradmin/back-up-your-pi-to-your-google-drive.html
-or this link might be even better
-http://www.pihomeserver.fr/en/2013/08/15/raspberry-pi-home-server-synchroniser-le-raspberry-pi-avec-votre-google-drive/
-
-Once compile is successful copy the grive executable to the folder that pimotion.py and sync.sh are located
-modify this to suit your folder structure.
-
-Test pimotion.py Operation
---------------------------
-To test you can launch pimotion.py from a ssh terminal session
-
-cd ~
-sudo ./pimotion.py
-
-Optional (Only if you have setup grive security)
-------------------------------------------------
-From a second ssh terminal run sync.sh (make sure that motion was detected and files are in the google_drive folder to sync).  
-You should see a /home/pi/sync.lock file.  This is created by pimotion.py when motion photos were created.
-
-cd ~
-sudo ./sync.sh
-
-You should see files being synchronized in both directions.  This is normal.  
-There are google drive apps for Apple, Android, Mac and PC.  
-This will allow you to access the raspberry pi motion capture security camera files on other computers or handheld devices.
-Assuming you have wifi/wired network to start on boot headless and the crontab and init.d setup then the camera will work
-immediately on booting (unattended).  I also setup a cronjob to reboot the rpi once a day but this may not be necessary for you.  
-I did it since I intend to leave the rpi security camera run remotely and this gives a chance for system to recover should there be a glitch.
-Also if you have problems check permissions.  The init.d will run as root so the files in the google_drive folder will be owned by root.  
-Just check to make sure you run with sudo ./pimotion.sh and sudo ./sync.sh if you are in terminal sessions.
-Once you know sync.sh is working OK you can automate the sync by running it in as a cronjob.
 
 Optional  (Only if you have setup grive security)
 Create a crontab to automate syncronization to google_drive from the RPI
@@ -196,11 +213,9 @@ If grive is already running or there are no files to process then the script sim
 Also if grive has been running for more than 5 minutes it is killed.  
 This can be changed in the script if you wish.
 
-Test operation by triggering motion and checking images are successfully transmitted to your google_drive.  
+Reboot RPI and test operation by triggering motion and checking images are successfully transmitted to your google_drive
+and optionally sync'd with your google drive on the internet.  
 Trouble shoot problems as required.
-
-
-
 
 Good Luck
 Claude Pageau 
