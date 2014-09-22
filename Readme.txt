@@ -6,9 +6,6 @@ Introduction
 ------------
 Security camera application using a Raspberry PI computer with a RPI camera module. Detects motion then names (number sequence or sequential) and saves images.
 Optionally synchronizes images with your google drive using a precompiled (github) grive binary (requires security setup).
-=======
-Security camera application using a Raspberry PI with RPI camera module. It Detects motion and saves images then
-optionally synchronizes images with your google drive using a precompiled (github) grive binary.   
 
 Important
 ---------
