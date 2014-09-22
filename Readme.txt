@@ -3,7 +3,11 @@
                -----------------------------------------------------------------------
           grive (google drive) capable raspberry pi security camera using python motion detection
 
-This is version 2.0 of pymotion.py with an option to use the picamera python module to take large photo rather than raspistill
+Note if you are using Picamera python module and images are black or have problems then update Raspberry PI firmware per command below
+from ssh login or terminal execute the following command to upgrade to latest firmware.  This should resolve any picamera issues.
+sudo rpi-upgrade
+          
+This is version 2.1 of pymotion.py with an option to use the picamera python module to take large photo rather than raspistill
 New Features
 - Changed setup.sh so it installs python-imaging and python-picamera by default. Note grive_setup.sh has been replaced
 - Added option to use picamera to take large photo instead of shelling out to raspian to run raspistill
@@ -18,18 +22,10 @@ Fixes
 
 I have been working on a grive capable security camera using two types of security camera cases.  
 One is a small fake plastic security cam case from Amazon.  Model A or B fits inside with wifi only.
-
 http://www.amazon.com/gp/product/B004D8NZ52/ref=oh_details_o01_s00_i00?ie=UTF8&psc=1
-
 Here is a larger aluminum camera case that I have a model B installed in.  This one has room for a usb power supply etc..
-
 http://www.amazon.com/Monoprice-108431-Outdoor-Camera-Switchable/dp/B007VDTTTM/ref=sr_1_72?ie=UTF8&qid=1393884556&sr=8-72&keywords=fake+security+camera
-
 I may do a youtube video on How To setup these cases with the raspberry pi computer and camera module installed.
-
-Raspberry pi forum information on lightweight python motion detection topic
-
-http://www.raspberrypi.org/forums/viewtopic.php?f=43&t=45235&p=362504&sid=06ba253d0d74f92733bc6862a224aafe#p362504
 
 After some work I now have the Raspberry Pi security camera's working efficiently from a software point of view.  
 The current configuration uses a modified version of pimotion.py script to save files to a number sequence instead of a date-time sequence. 
