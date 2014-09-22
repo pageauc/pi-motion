@@ -1,10 +1,14 @@
-                                          pimotion.py_2.0
-               Raspberry Pi Python Motion Capture and goggle drive syncing using grive
-               -----------------------------------------------------------------------
+                                 pimotion.py_2.1
+       Raspberry Pi Python Motion Capture and goggle drive syncing using grive
+       -----------------------------------------------------------------------
+
 Introduction
 ------------
 Security camera application using a Raspberry PI computer with a RPI camera module. Detects motion then names (number sequence or sequential) and saves images.
 Optionally synchronizes images with your google drive using a precompiled (github) grive binary (requires security setup).
+=======
+Security camera application using a Raspberry PI with RPI camera module. It Detects motion and saves images then
+optionally synchronizes images with your google drive using a precompiled (github) grive binary.   
 
 Important
 ---------
@@ -20,10 +24,10 @@ New Features
 - Changed setup.sh so it installs python-imaging and python-picamera by default. Note grive_setup.sh has been replaced
 - Added option to use picamera to take large photo instead of shelling out to raspian to run raspistill
   Note small image still uses raspistill. 
-- Added picamera option to take low light photos during specified hours.  This dramatically improves
+- Added lowLight picamera option to take low light photos during specified hours.  This dramatically improves
   low light photos but don't use during bright light conditions or photos will be washed out
-- picamera option uses camera settings to make Daylight photo more consistent
-- Added makemovie.py to create a movie from contents of google_drive folder.
+- Added bestPhoto option to make Daylight photo more consistent
+- Added makemovie.py to create a avi movie from contents of google_drive folder.
 Fixes
 - Fixed bug that crashes pimotion if numsequence is set to False caused by displaying initial settings information
 
