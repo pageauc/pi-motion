@@ -1,7 +1,8 @@
                                           pimotion.py_2.0
                Raspberry Pi Python Motion Capture and goggle drive syncing using grive
                -----------------------------------------------------------------------
-          grive (google drive) capable raspberry pi security camera using python motion detection
+Security camera application using a Raspberry PI with RPI camera module. It Detects motion and saves images then
+optionally synchronizes images with your google drive using a precompiled (github) grive binary.   
 
 Note if you are using Picamera python module and images are black or have problems then update Raspberry PI firmware per command below
 from ssh login or terminal execute the following command to upgrade to latest firmware.  This should resolve any picamera issues.
@@ -14,7 +15,7 @@ New Features
   Note small image still uses raspistill. 
 - Added picamera option to take low light photos during specified hours.  This dramatically improves
   low light photos but don't use during bright light conditions or photos will be washed out
-- picamera option uses camera settings to make Daylight photo more consistent
+- Added bestPhoto option to make Daylight photo more consistent
 - Added makemovie.py to create a movie from contents of google_drive folder.
 
 Fixes
