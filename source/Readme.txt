@@ -13,6 +13,7 @@ Note if you are using Picamera python module and images are black or have proble
 from ssh login or terminal execute the following command to upgrade to latest firmware.  This should resolve any picamera issues.
 
 sudo rpi-update
+sudo shutdown -h now
           
 Upgrade History
 ---------------
