@@ -136,8 +136,8 @@ eg Threshold, Sensitivity, image prefix, numbering range, etc.
 See code comments for details.
 I have the pimotion.py camera image settings set to flipped due to the
 camera module mounting position in the fake security camera case. 
-You may also want to change sensitivity and/or threshold as needed as well
-as the filename prefix etc. Ctrl-X to save file and exit nano editor.
+Review the various pimotion.py settings and edit as desired.
+use ctrl-x to save file and exit nano editor.
 
 Details if you wish to compile grive yourself (Optional)
 --------------------------------------------------------
@@ -178,11 +178,18 @@ check that you have a google drive.
 
 Important
 ---------
-It is highly recommended that any documents you have be moved to a separate
-google drive folder eg my_files.  This will prevent these files from getting
-sync'd back to the Raspberry PI. You can also perform this operation from
-a RPI desktop terminal and web browser if you like. Just make sure you are
-logged into google from ssh session or RPI desktop terminal session
+It is highly recommended that any web google drive documents you have be
+moved to a separate google drive folder eg my_files.
+This will prevent these files from getting sync'd back to the Raspberry Pi.
+Moving your web google drive documents can be done from a web browser.
+
+Initialize grive (Optional)
+The operations below can be done using a (putty) ssh session from a
+networked computer or directly from a RPI desktop terminal session and
+a RPI web browser (eg Midori or Epiphany). Just make sure you are logged into
+web google account before you start.
+Note: running setup.sh on the RPI will also show detailed instructions
+for setting up grive security token.
 
 cd ~
 cd picam    # or name of folder you chose
@@ -195,8 +202,8 @@ Note if you are using putty ssh then right click to paste RPI highlighted
 url into the PC's web browser url bar 
 The url will open a new web page and display a security hash token.  
 Copy and paste this security token into grive via ssh session on rpi. 
-if grive -a session hit enter to accept security token. grive will indicate
-if the operation was successful
+In the grive -a session hit enter to accept the security token.
+grive will indicate if the operation was successful
 
 If you previously ran pimotion.py then a google_drive folder should already
 be created under the picam folder (or whatever folder you picked)
@@ -204,14 +211,16 @@ If it does not exist run command below to create one.
 
 ./pimotion.py
 
-to create google_drive or manually create using mkdir command if desired.
+or create google_drive or manually using mkdir command if desired.
 
 Once grive has been initialized successfully with the grive -a option then
-copy the /home/pi/.grive and /home/pi/.grive_state files to the
+copy the /home/pi/picam/.grive and /home/pi/picam/.grive_state files to the
 /home/pi/picam/google_drive folder or your folder name per above code. 
-This will allow grive to be executed from the /home/pi folder so it does not
-have to be in the google_drive folder.
+This will allow grive to be executed from the /home/pi/picam folder so it
+does not have to be in the google_drive folder.
 
+cd ~
+cd picam
 sudo cp ./.grive google_drive
 sudo cp ./.grive_state google_drive
 sudo ./sync.sh
@@ -270,8 +279,9 @@ can automate the sync by running it in as a cronjob.
 Setup init.d script to auto launch pimotion.py on boot-up of raspberry pi
 -------------------------------------------------------------------------
 Note there is a copy of the init.d pimotion.sh in the tar file so you should
-be ableto copy if instead of the skeleton file method below if you wish 
-eg in the pimotion folder execute the following then skip to step 4
+be able to copy if instead of the skeleton file method below if you wish 
+eg in the pimotion folder execute the following then skip to edit 
+/etc/init.d/pimotion.sh using nano.
 
 sudo cp pimotion.sh /etc/init.d
 
