@@ -17,11 +17,8 @@ following command to upgrade to latest firmware. This should resolve any picamer
 
 sudo rpi-update
 sudo shutdown -h now
-<<<<<<< HEAD
 
 Unplug and restart your Raspberry Pi.
-=======
->>>>>>> origin/master
           
 Upgrade History
 ---------------
