@@ -34,7 +34,7 @@ cd ~
 mkdir picam
 cd ./picam
 wget https://raw.github.com/pageauc/pi-motion-grive/master/pimotion.tar
-tar -xvf pimotion.tar
+tar -pxvf pimotion.tar
 # Install dependancies and required software
 sudo ./setup.sh
 # Initialize pimotion.py files, google_drive and test motion.
@@ -137,7 +137,7 @@ wget https://raw.github.com/pageauc/pi-motion-grive/master/pimotion.tar
 
 # Extract tar files to current folder
 
-tar -xvf pimotion.tar
+tar -pxvf pimotion.tar
 
 # Install required grive libraries from the internet
 # Note this will take a while so be patient
