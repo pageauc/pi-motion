@@ -17,10 +17,35 @@ or have problems then update Raspberry PI firmware per command below from
 a (putty) ssh login or terminal execute the following command to upgrade to
 latest firmware. This should resolve any picamera issues.
 
+# Update Raspbian
+sudo apt-get update
+# Update RPI firmware
 sudo rpi-update
+# Hard boot to update firmware
 sudo shutdown -h now
 
 Unplug and restart your Raspberry Pi.
+
+Quick Setup
+-----------
+SSH (putty) or Desktop Terminal login to RPI and perform the following
+
+cd ~
+mkdir picam
+cd ./picam
+wget https://raw.github.com/pageauc/pi-motion-grive/master/pimotion.tar
+tar -pxvf pimotion.tar
+# Install dependancies and required software
+sudo ./setup.sh
+# Initialize pimotion.py files, google_drive and test motion.
+python ./pimotion.py
+# Verify motion then ctrl-c to exit pimotion.py
+# Edit pimotion.py to change any desired settings per comments. ctrl-x to Save
+nano pimotion.py
+# test edit changes. ctrl-c to exit pimotion.py
+python ./pimotion.py
+
+See details below for setting up run at boot init.d, crontab, grive sync Etc.
           
 Upgrade History
 ---------------
@@ -100,6 +125,7 @@ Use putty to ssh into an internet connected raspberry pi and execute the
 following commands. Note change picam to a folder name of your choice
 if required.
 
+sudo apt-get update
 cd ~
 mkdir picam
 cd ./picam
@@ -111,7 +137,7 @@ wget https://raw.github.com/pageauc/pi-motion-grive/master/pimotion.tar
 
 # Extract tar files to current folder
 
-tar -xvf pimotion.tar
+tar -pxvf pimotion.tar
 
 # Install required grive libraries from the internet
 # Note this will take a while so be patient
