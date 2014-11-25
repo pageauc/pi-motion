@@ -1,12 +1,14 @@
 #!/bin/bash
 echo "Downloading and Installing grive and pimotion dependencies. One Mement Please ......."
-sudo apt-get install libgcrypt11-dev libjson0-dev libcurl4-openssl-dev libexpat1-dev libboost-filesystem-dev libboost-program-options-dev libboost-all-dev libyajl-dev python-imaging python-picamera mencoder
+sudo apt-get install build-essential libcurl4-openssl-dev libexpat1-dev libboost-filesystem-dev qt4-dev-tools libyajl-dev libboost-all-dev binutils-dev
+sudo apt-get install libgcrypt11-dev libjson0-dev libboost-program-options-dev python-imaging python-picamera mencoder
 echo "----------- grive, pimotion and mencoder Dependencies Installed --------------------"
 echo "Steps to initialize grive"
 echo "1  Open a web browser on your PC and login to google. eg gmail and open a new blank tab"
 echo "2  Use putty ssh to login into the raspberry pi to be setup"
 echo "3  Change to the required pi motion detection folder containing grive, pimotion.py and sync.sh"
-echo "4  Run ./grive -a to initialize to setup grive"
+echo "4  To start the grive security setup Run"
+echo "   ./grive -a"
 echo "5  Highlight the very long URL returned by grive -a command"
 echo "6  Move mouse to the browser window and right click paste into url box in browser"
 echo "   and hit return to go to the web page"
@@ -20,3 +22,4 @@ echo "11 Start sudo ./pimotion.py and generate some motion images. "
 echo "   A .sync file should be created. Ctrl-c to exit the python script"
 echo "12 Manually execute sudo ./sync.sh to start a synchronization session"
 echo "   and verify everything is working OK."
+echo "   --------------- End of Instruction ---------------------"  

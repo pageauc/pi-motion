@@ -155,7 +155,7 @@ def saveImage(settings, width, height, quality, diskSpaceToReserve):
     #  Use picamera python module otherwise shell to os and use raspistill
     if use_picamera:
       if lowLight:
-        if ((rightnow.hour > dayLight_start) and (rightnow.hour < dayLight_end)):
+        if ((rightnow.hour >= dayLight_start) and (rightnow.hour <= dayLight_end)):
            lowLight_night = False
         else:
            lowLight_night = True
