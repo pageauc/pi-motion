@@ -1,4 +1,4 @@
-                                 pimotion.py_2.1
+                                 pimotion.py_2.2
        Raspberry Pi Python Motion Capture and google drive syncing using grive
        -----------------------------------------------------------------------
 
@@ -51,9 +51,11 @@ Upgrade History
 ---------------
 22-Sep-2014 - Version 2.1 of pymotion.py with an option to use the
 picamera python module to take large photo rather than raspistill
+25-Nov-2014 - Version 2.2 recompiled grive due to a binutils version problem.
+also updated setup.sh to include additional libraries and created new pimotion.tar
 
-New Features
-------------
+Program Features
+----------------
 - Changed setup.sh so it installs python-imaging and python-picamera by default. 
   Note grive_setup.sh has been replaced
 - Added option to use picamera to take large photo instead of shelling out to
