@@ -1,6 +1,8 @@
-                                 pimotion.py_2.2
-       Raspberry Pi Python Motion Capture and google drive syncing using grive
-       -----------------------------------------------------------------------
+                             pimotion.py_2.2
+  
+  Raspberry Pi Python Motion Capture and google drive syncing using grive
+  Note this version uses picamera python libraries includes low light option
+  --------------------------------------------------------------------------
 
 Introduction
 ------------
@@ -8,7 +10,9 @@ Security camera application using a Raspberry PI computer with a RPI camera
 module. Detects motion then names (number sequence or sequential) and
 saves images. Optionally synchronizes images with your web based
 google drive using a precompiled (github) grive binary
-(requires security setup).
+(requires security setup).  Includes option for taking low light images
+but does not use this for night motion detection.  Also motion detection
+still uses raspistill
 
 Important
 ---------
