@@ -1,35 +1,35 @@
-                                 pimotion.py_2.2
-       Raspberry Pi Python Motion Capture and google drive syncing using grive
-       -----------------------------------------------------------------------
+# pimotion.py_2.2
+## Raspberry Pi Python Motion Capture and google drive syncing using grive
 
-Introduction
-------------
+
+### Introduction
+
 Security camera application using a Raspberry PI computer with a RPI camera
 module. Detects motion then names (number sequence or sequential) and
 saves images. Optionally synchronizes images with your web based
 google drive using a precompiled (github) grive binary
 (requires security setup).
 
-Important
----------
+### Important
+
 Note if you are using a previous Picamera python module and images are black
 or have problems then update Raspberry PI firmware per command below from
 a (putty) ssh login or terminal execute the following command to upgrade to
 latest firmware. This should resolve any picamera issues.
 
+```bash
 # Update Raspbian
 sudo apt-get update
 # Update RPI firmware
 sudo rpi-update
 # Hard boot to update firmware
 sudo shutdown -h now
-
+```
 Unplug and restart your Raspberry Pi.
 
-Quick Setup
------------
+### Quick Setup
 SSH (putty) or Desktop Terminal login to RPI and perform the following
-
+```bash
 cd ~
 mkdir picam
 cd ./picam
@@ -44,34 +44,35 @@ python ./pimotion.py
 nano pimotion.py
 # test edit changes. ctrl-c to exit pimotion.py
 python ./pimotion.py
-
+```
 See details below for setting up run at boot init.d, crontab, grive sync Etc.
           
-Upgrade History
----------------
-22-Sep-2014 - Version 2.1 of pymotion.py with an option to use the
+### Upgrade History
+
+* 22-Sep-2014 - Version 2.1 of pymotion.py with an option to use the
 picamera python module to take large photo rather than raspistill
-25-Nov-2014 - Version 2.2 recompiled grive due to a binutils version problem.
+* 25-Nov-2014 - Version 2.2 recompiled grive due to a binutils version problem.
 also updated setup.sh to include additional libraries and created new pimotion.tar
 
-Program Features
-----------------
-- Changed setup.sh so it installs python-imaging and python-picamera by default. 
+### Program Features
+
+* Changed setup.sh so it installs python-imaging and python-picamera by default. 
   Note grive_setup.sh has been replaced
-- Added option to use picamera to take large photo instead of shelling out to
+* Added option to use picamera to take large photo instead of shelling out to
   raspian to run raspistill. Note small image still uses raspistill. 
-- Added lowLight picamera option to take low light photos during specified hours.
+* Added lowLight picamera option to take low light photos during specified hours.
   This dramatically improves low light photos but don't use during bright light 
   conditions or photos will be washed out
-- Added bestPhoto option to make Daylight photo more consistent
-- Added makemovie.py to create a avi movie from contents of google_drive folder.
-Fixes
------
+* Added bestPhoto option to make Daylight photo more consistent
+* Added makemovie.py to create a avi movie from contents of google_drive folder.
+
+### Fixes
+
 - Fixed bug that crashes pimotion if numsequence is set to False caused by
   displaying initial settings information
 
-Background
-----------
+### Background
+
 I have been working on a grive capable security camera using two types of
 security camera cases. One is a small fake plastic security cam case
 from Amazon.  Model A or B fits inside with wifi only.
@@ -121,12 +122,13 @@ command line then settings and activity information will be displayed.
 Just a little setup for pimotion.py  If you already have a pimotion.py
 then mv existing file to another file name
 
-Download and Setup Instructions
--------------------------------
+### Download and Setup Instructions
+
 Use putty to ssh into an internet connected raspberry pi and execute the
 following commands. Note change picam to a folder name of your choice
 if required.
 
+```bash
 sudo apt-get update
 cd ~
 mkdir picam
@@ -145,9 +147,10 @@ tar -pxvf pimotion.tar
 # Note this will take a while so be patient
 
 sudo ./setup.sh 
+```
 
-Change pimotion.py settings as required
----------------------------------------
+### Change pimotion.py settings as required
+
 pimotion.py is the modified pimotion.py script based on previous
 modified brainflakes script.  
 I modified the script to allow the use of a number sequence to restrict
@@ -156,9 +159,9 @@ using grive.  Currently set to 500 images
 Please note this includes PIL imageFont and imageDraw python modules to
 optionally put a date-time stamp on each photo.
 Make sure you are in the correct folder containing pimotion.py
-
+```bash
 nano pimotion.py
-
+```
 Use nano editor to modify any pimotion.py script settings as required 
 eg Threshold, Sensitivity, image prefix, numbering range, etc. 
 See code comments for details.
@@ -167,8 +170,8 @@ camera module mounting position in the fake security camera case.
 Review the various pimotion.py settings and edit as desired.
 use ctrl-x to save file and exit nano editor.
 
-Details if you wish to compile grive yourself (Optional)
---------------------------------------------------------
+### Details if you wish to compile grive yourself (Optional)
+
 You will need to download the tar file from the web link below and extract
 it on your raspberry pi or compile a modified version of grive in order to
 sync files to your google drive see instructions from url link below.  
@@ -196,16 +199,16 @@ http://www.pihomeserver.fr/en/2013/08/15/raspberry-pi-home-server-synchroniser-l
 Once compile is successful copy the grive executable to the folder that
 pimotion.py and sync.sh are located
 
-Optional Setup grive security to your google account
-----------------------------------------------------
+### Optional Setup grive security to your google account
+
 If you want to synchronize image files to your google drive then follow the
 instructions below
 Note you must have a valid google account and google drive.
 On a PC open a web browser eg chrome and login to your google account and
 check that you have a google drive.
 
-Important
----------
+### Important
+
 It is highly recommended that any web google drive documents you have be
 moved to a separate google drive folder eg my_files.
 This will prevent these files from getting sync'd back to the Raspberry Pi.
@@ -219,10 +222,11 @@ web google account before you start.
 Note: running setup.sh on the RPI will also show detailed instructions
 for setting up grive security token.
 
+```bash
 cd ~
 cd picam    # or name of folder you chose
 sudo ./grive -a
-
+```
 This will display a web browser url.
 You will need to highlight the displayed url on the RPI and paste into
 the PC or RPI web browser URL bar. 
@@ -236,9 +240,9 @@ grive will indicate if the operation was successful
 If you previously ran pimotion.py then a google_drive folder should already
 be created under the picam folder (or whatever folder you picked)
 If it does not exist run command below to create one.
-
+```bash
 ./pimotion.py
-
+```
 or create google_drive or manually using mkdir command if desired.
 
 Once grive has been initialized successfully with the grive -a option then
@@ -247,37 +251,41 @@ copy the /home/pi/picam/.grive and /home/pi/picam/.grive_state files to the
 This will allow grive to be executed from the /home/pi/picam folder so it
 does not have to be in the google_drive folder.
 
+```bash
 cd ~
 cd picam
 sudo cp ./.grive google_drive
 sudo cp ./.grive_state google_drive
 sudo ./sync.sh
-
+```
 You should see grive handshake with your google account and synchronize
 files both ways between google and the RPI
 
-Test pimotion.py and sync.sh together
--------------------------------------
+### Test pimotion.py and sync.sh together
+
 To test you can launch pimotion.py from one ssh session and sync.sh from a
 second ssh terminal session. 
 Note: This can also be done from the RPI desktop using two terminal sessions.
 
-First terminal session
-----------------------
+#### First terminal session
+```bash
 cd ~
 cd picam  # or whatever folder name you used.
 sudo ./pimotion.py
+```
 
-Second terminal session
------------------------
+#### Second terminal session
+
 From a second ssh terminal run sync.sh (make sure that motion was detected
 and files are in the google_drive folder to sync).  
 You should see a /home/pi/picam/sync.lock file.  This is created by
 pimotion.py when motion photos were created.
 
+```bash
 cd ~
 cd picam  # or whatever folder name you used.
 sudo ./sync.sh
+```
 
 You should see files being synchronized in both directions.  This is normal.  
 There are google drive apps for Apple, Android, Mac and PC.  Just do a
@@ -292,8 +300,8 @@ pymotion.py should start automatically and save images to the google_drive
 folder. When the crontab is executed it will initiate a sync of images to your
 google drive on the web.  
  
-Note:
------
+### Note:
+
 I also setup a cronjob to reboot the rpi once a day but this may not be
 necessary for you. I did it since I intend to leave the rpi security camera
 run remotely and this gives a chance for system to recover should there
@@ -304,37 +312,38 @@ Just check to make sure you run with sudo ./pimotion.sh and sudo ./sync.sh
 if you are in terminal sessions. Once you know sync.sh is working OK you 
 can automate the sync by running it in as a cronjob.
 
-Setup init.d script to auto launch pimotion.py on boot-up of raspberry pi
--------------------------------------------------------------------------
+### Setup init.d script to auto launch pimotion.py on boot-up of raspberry pi
+
 Note there is a copy of the init.d pimotion.sh in the tar file so you should
 be able to copy if instead of the skeleton file method below if you wish 
 eg in the pimotion folder execute the following then skip to edit 
 /etc/init.d/pimotion.sh using nano.
-
+```bash
 sudo cp pimotion.sh /etc/init.d
+```
 
 Check permissions for the /etc/init.d/pimotion.sh to make sure it is executable  
 if required change permissions for pimotion.sh using chmod command 
-
+```bash
 ls -al /etc/init.d/pimotion.sh
 
 cd /etc/init.d
 chmod +x pimotion.sh
 sudo nano pimotion.sh
-   
+
 # Change appropriate entries to point to your pimotion.py script and save
 # the file using ctrl-x
 
 sudo update-rc.d pimotion.sh defaults
 cd ~
+```
+### Optional  (Only if you have setup grive security) 
+###Create a crontab to automate syncronization to google_drive from the RPI
 
-Optional  (Only if you have setup grive security)
-Create a crontab to automate syncronization to google_drive from the RPI
-------------------------------------------------------------------------
 From an logged in ssh or terminal session
-
+```bash
 sudo crontab -e
-
+```
 Paste the following line into the crontab file nano editor and modify
 folder name and frequency if required. currently executes every minute. 
 
