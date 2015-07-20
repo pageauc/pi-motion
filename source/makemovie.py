@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# written by Claude Pageau for use by pitimo.py image files.
+# written by Claude Pageau for use by pimotion.py image files.
 
 print("initializing ....")
 import io
@@ -12,7 +12,7 @@ import cgi, cgitb
 
 imageWidth = 1920
 imageHeight = 1080
-imagePath = "timelapse"
+imagePath = "google_drive"
 movieName = "./makemovie.avi"
 # movieName Can also include folder path, othewise file saved to current folder. 
 
