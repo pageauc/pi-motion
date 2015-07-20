@@ -43,7 +43,6 @@ Hard boot to update firmware
 
     sudo shutdown -h now
 
-
 Unplug and restart your Raspberry Pi.
 Login and install pimotion.py
 
