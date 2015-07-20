@@ -19,7 +19,7 @@
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="Kitchen Motion Detection Camera"
+DESC="Motion Detection Camera"
 NAME=pimotion.py
 DAEMON=/home/pi/picam/$NAME
 DAEMON_ARGS=""

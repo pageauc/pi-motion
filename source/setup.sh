@@ -1,25 +1,13 @@
 #!/bin/bash
-echo "Downloading and Installing grive and pimotion dependencies. One Mement Please ......."
-sudo apt-get install build-essential libcurl4-openssl-dev libexpat1-dev libboost-filesystem-dev qt4-dev-tools libyajl-dev libboost-all-dev binutils-dev
-sudo apt-get install libgcrypt11-dev libjson0-dev libboost-program-options-dev python-imaging python-picamera mencoder
-echo "----------- grive, pimotion and mencoder Dependencies Installed --------------------"
-echo "Steps to initialize grive"
-echo "1  Open a web browser on your PC and login to google. eg gmail and open a new blank tab"
-echo "2  Use putty ssh to login into the raspberry pi to be setup"
-echo "3  Change to the required pi motion detection folder containing grive, pimotion.py and sync.sh"
-echo "4  To start the grive security setup Run"
-echo "   ./grive -a"
-echo "5  Highlight the very long URL returned by grive -a command"
-echo "6  Move mouse to the browser window and right click paste into url box in browser"
-echo "   and hit return to go to the web page"
-echo "7  Hit accept button then copy security code (highlight then right click copy or type ctrl-c"
-echo "8  Move mouse to putty session and paste (right click) at grive entry requesting code"
-echo "9  grive will then authenticate and start to try to syncronize with the current folder."
-echo "   Hit ctrl-c to stop"
-echo "10 Copy .grive file into google_drive folder.  It should not be necessary to copy"
-echo "   the .grive_state file if it exists but no harm if you don't"
-echo "11 Start sudo ./pimotion.py and generate some motion images. "
-echo "   A .sync file should be created. Ctrl-c to exit the python script"
-echo "12 Manually execute sudo ./sync.sh to start a synchronization session"
-echo "   and verify everything is working OK."
-echo "   --------------- End of Instruction ---------------------"  
+echo "    Downloading and Installing pimotion dependencies."
+echo "    One Moment Please ......."
+sudo apt-get install -y python-picamera  python-imaging mencoder dos2unix gpac python-pyexiv2
+sudo chmod +x gdrive
+sudo cp gdrive /usr/local/bin
+echo "    Install complete."
+echo "    Edit the pimotion.py variables to suit your needs per comments"
+echo "nano pimotion.py"
+echo "    Run pimotion.py with command below to Test.  See Readme.md"
+echo "    for additional instructions"
+echo "sudo ./pimotion.py"
+echo "See Readme.md for setting up gdrive security token"
