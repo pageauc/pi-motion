@@ -1,12 +1,14 @@
 #!/usr/bin/python
 
-# pimotion 2.1  Updated 22-Sep-2014
+# pimotion 2.3  Updated 20-Jul-2015
 # original script by brainflakes, improved by pageauc, peewee2 and Kesthal
 # www.raspberrypi.org/phpBB3/viewtopic.php?f=43&t=45235
-# modified by Claude Pageau 4-Mar-2014 to include numbering sequence plus dat/lock files for grive script integration
+# modified by Claude Pageau 4-Mar-2014 to include numbering sequence plus
+# dat/lock files for gdrive script integration
 # also made program independent of path and file names.
 # You need to install PIL to run this script
-# version 2.0  Added picamera python module option for large photos and ability to set low light times for camera if desired.
+# version 2.0  Added picamera python module option for large photos and
+# ability to set low light times for camera if desired.
 # Brief setup instructions
 # use putty ssh to login to raspberry pi
 # cd ~
@@ -17,10 +19,10 @@
 # Extract tar files to current folder
 # tar -xvf pimotion.tar
 # See detailed installation instructions in Readme.txt (these are also github)
-# Install requires grive and picamera dependencies and libraries from the internet so run the setup.sh command
+# Install requires gdrive and picamera dependencies and libraries from the internet so run the setup.sh command
 # sudo ./setup.sh 
 
-pymotion_version = "2.1"
+pymotion_version = "2.3"
 print "Initializing %s ...." % ( pymotion_version )
 # If this option is set to True then picamera will be used instead of shelling to OS to run raspistill
 use_picamera = True
@@ -344,13 +346,13 @@ while (True):
             f = open(countpath, 'w+')
             f.write(str(writeCount))
             f.close()
-        # write a lock file so sync script knows when there are files to process for grive
+        # write a lock file so sync script knows when there are files to process for gdrive
         if createLockFile:
             if not os.path.exists(lockfilepath):
                 print "%s - Creating %s" % (progname, lockfilepath)
                 open(lockfilepath, 'w').close()
             f = open(lockfilepath, 'w+')
-            f.write("Photos available to sync with grive using sync shell script")
+            f.write("Photos available to sync with gdrive using sync shell script")
             f.close()
 
     # Swap comparison buffers
