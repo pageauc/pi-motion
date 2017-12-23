@@ -5,7 +5,7 @@ echo "$0 ver 1.1  written by Claude Pageau"
 # ---------------------------------------
 rcloneName="gdmedia"
 syncRoot="/home/pi/pi-motion"
-localSyncDir="google-drive"
+localSyncDir="images"
 remoteSyncDir="pi-motion/images"
 # ---------------------------------------
 

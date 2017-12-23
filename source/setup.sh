@@ -6,7 +6,7 @@ install_Dir="pi-motion"
 mkdir -p $install_Dir
 cd "$install_Dir"
 
-installFiles=("Readme.md" "pimotion.py" "pimotion.sh" \
+installFiles=("pimotion.py" "pimotion.sh" \
 "makemovie.py" "mvleavelast.sh" "makedailymovie.sh" "h2mp4.sh" "sync.sh")
 
 for fname in "${installFiles[@]}" ; do
@@ -20,9 +20,11 @@ for fname in "${installFiles[@]}" ; do
         fi
     fi
 done
+wget -O Readme.md -q https://raw.github.com/pageauc/pi-motion/master/Readme.md
 
 echo "Installing rclone"
 curl -L https://raw.github.com/pageauc/rclone4pi/master/rclone-install.sh | bash
+
 
 chmod +x *py
 chmod +x *sh
@@ -32,15 +34,17 @@ dos2unix *py
 
 echo "    Downloading and Installing pimotion dependencies.  Wait ..."
 sudo apt-get install -y python-picamera python3-picamera python-imaging dos2unix gpac python-pyexiv2
+cd ..
+rm -r rpi-sync
 
 echo "
                    INSTRUCTIONS
                    
 Make sure pi-camera is connected and enabled in raspi-config
 
-To Run run command below in a logged in console session
+To Run enter commands below in a logged in console session
 
-cd $install_Dir
-./pimotion.py
+    cd $install_Dir
+    ./pimotion.py
 
 "

@@ -3,26 +3,9 @@
 # pimotion 2.3  Updated 20-Jul-2015
 # original script by brainflakes, improved by pageauc, peewee2 and Kesthal
 # www.raspberrypi.org/phpBB3/viewtopic.php?f=43&t=45235
-# modified by Claude Pageau 4-Mar-2014 to include numbering sequence plus
-# dat/lock files for gdrive script integration
-# also made program independent of path and file names.
-# You need to install PIL to run this script
-# version 2.0  Added picamera python module option for large photos and
-# ability to set low light times for camera if desired.
-# Brief setup instructions
-# use putty ssh to login to raspberry pi
-# cd ~
-# mkdir picam
-# cd ./picam
-# Download pimotion.tar file from my github account
-# wget https://raw.github.com/pageauc/pi-motion-grive/master/pimotion.tar
-# Extract tar files to current folder
-# tar -xvf pimotion.tar
-# See detailed installation instructions in Readme.txt (these are also github)
-# Install requires gdrive and picamera dependencies and libraries from the internet so run the setup.sh command
-# sudo ./setup.sh 
 
-pymotion_version = "2.3"
+
+pymotion_version = "2.4"
 print "Initializing %s ...." % ( pymotion_version )
 # If this option is set to True then picamera will be used instead of shelling to OS to run raspistill
 use_picamera = True
@@ -60,7 +43,7 @@ forceCapture = True
 forceCaptureTime = 60 * 60 # Once an hour
 
 # filepath - location of folder to save photos 
-filepath = baseDir + "google_drive"
+filepath = baseDir + "images"
 if not os.path.isdir(filepath):
   print "%s Photo Storage folder not found." % (progname)
   print "%s - creating photo storage folder %s " % (progname, filepath)
