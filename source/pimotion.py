@@ -42,14 +42,14 @@ sensitivity = 25
 forceCapture = True
 forceCaptureTime = 60 * 60 # Once an hour
 
-# filepath - location of folder to save photos 
+# filepath - location of folder to save photos
 filepath = baseDir + "images"
 if not os.path.isdir(filepath):
   print "%s Photo Storage folder not found." % (progname)
   print "%s - creating photo storage folder %s " % (progname, filepath)
   os.makedirs(filepath)
 
-# filenamePrefix - string that prefixes the file name for easier identification of files.  A dash will be added at end as part of formating. 
+# filenamePrefix - string that prefixes the file name for easier identification of files.  A dash will be added at end as part of formating.
 filenamePrefix = "rpi-cam2"
 
 # Lock File is used to indicate photos are added
@@ -81,7 +81,7 @@ saveQuality = 15 # Set jpeg quality (0 to 100)
 
 # Special Settings for low lighting between the hours specified 24 h time
 lowLight = True
-dayLight_start = 5       # 6am 
+dayLight_start = 5       # 6am
 dayLight_end = 20        # 10pm
 
 # Test-Image settings
@@ -129,14 +129,14 @@ def captureTestImage(settings, width, height):
 def saveImage(settings, width, height, quality, diskSpaceToReserve):
     keepDiskSpaceFree(diskSpaceToReserve)
     rightnow = datetime.datetime.now()
-  
+
     if numsequence:
         filename = filepath + "/" + filenamePrefix + "-" + fileCount + ".jpg"
         imageTagName = filenamePrefix + "-" + fileCount + "   %04d%02d%02d-%02d:%02d:%02d" % (rightnow.year, rightnow.month, rightnow.day, rightnow.hour, rightnow.minute, rightnow.second)
     else:
         filename = filepath + "/" + filenamePrefix + "-%04d%02d%02d-%02d%02d%02d.jpg" % (rightnow.year, rightnow.month, rightnow.day, rightnow.hour, rightnow.minute, rightnow.second)
         imageTagName = filenamePrefix + "-" + "%04d%02d%02d-%02d:%02d:%0ds" % (rightnow.year, rightnow.month, rightnow.day, rightnow.hour, rightnow.minute, rightnow.second)
-    
+
     #  Use picamera python module otherwise shell to os and use raspistill
     if use_picamera:
       if lowLight:
@@ -144,7 +144,7 @@ def saveImage(settings, width, height, quality, diskSpaceToReserve):
            lowLight_night = False
         else:
            lowLight_night = True
-           
+
       # Use picamera python module to take image rather than raspistill
       if lowLight_night:
         # Low Light (night time) conditions
@@ -165,12 +165,12 @@ def saveImage(settings, width, height, quality, diskSpaceToReserve):
            # longer than 6 seconds
            camera.capture(filename)
       else:
-        # Normal Daylight conditions 
+        # Normal Daylight conditions
         with picamera.PiCamera() as camera:
            camera.vflip = picameraVFlip
            camera.resolution = (width, height)
            # bestPhoto takes a consistent images but slower. Best for timelapse processing.
-           if bestPhoto:      
+           if bestPhoto:
              camera.framerate = 30
              # Give the camera's auto-exposure and auto-white-balance algorithms
              # some time to measure the scene and determine appropriate values
@@ -238,7 +238,7 @@ if numsequence:
         f = open(countpath, 'w+')
         f.write(str(startCount))
         f.close()
- 
+
     with open(countpath, 'r') as f:
         writeCount = f.read()
         f.closed

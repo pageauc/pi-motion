@@ -1,5 +1,5 @@
 #!/bin/bash
-# $0 ver 1.2 written by Claude Pageau
+# $0 ver 1.3 written by Claude Pageau
 
 cd ~
 install_Dir="pi-motion"
@@ -7,7 +7,7 @@ mkdir -p $install_Dir
 cd "$install_Dir"
 
 installFiles=("pimotion.py" "pimotion.sh" "webserver.py" "webserver.sh" "webconf.py" \
-"makemovie.py" "mvleavelast.sh" "makedailymovie.sh" "h2mp4.sh" "sync.sh")
+"makevideo.sh" "makevideo.conf" "mvleavelast.sh" "makedailymovie.sh" "h2mp4.sh" "sync.sh")
 
 for fname in "${installFiles[@]}" ; do
     wget_output=$(wget -O $fname -q --show-progress https://raw.github.com/pageauc/pi-motion/master/source/$fname)
@@ -37,17 +37,17 @@ rm -r rpi-sync
 
 echo "
                    INSTRUCTIONS
-                   
+
 Make sure pi-camera is connected and enabled in raspi-config
 
 To Run enter commands below in a logged in console session
 
     cd $install_Dir
     ./pimotion.py
-    
+
 or Run in background if no problems
 
     ./pimotion.sh start
-    
+
 
 "

@@ -36,11 +36,9 @@
 #
 # 01 20 * * * /home/pi/picam/makedailymovie.sh
 
-# sudo rm /home/pi/picam/dailymovie/*jpg
-
 # get current working folder
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-folder_source=$DIR/google_drive
+folder_source=$DIR/images
 folder_destination=$DIR/dailymovies
 if [ ! -d $folder_destination ]; then
   echo "Folder "$folder_destination" does not exist"
