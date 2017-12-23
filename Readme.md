@@ -1,30 +1,29 @@
 # pimotion.py_2.4
-##### Raspberry Pi Python Motion Capture and google drive syncing using gdrive
-##### For an updated version of this program see pi-timolo 
-here https://github.com/pageauc/pi-timolo
+#### Raspberry Pi Python Motion Detect with Rclone syncing to a Storage Service 
+For an updated version of this program see my GitHub pi-timolo project
+at https://github.com/pageauc/pi-timolo
 
 
 ### Prerequisites
-(assumes raspberry pi with RPI camera module installed and tested running updated raspbian
-operating system installed on min 8gb SD card with expanded file system)
-Note: If you are using an older raspbian build or previous Picamera python module,
-and images are black or have problems then update Raspberry PI firmware per optional
-firmware update command below.
+Requires a raspberry pi with a RPI camera module installed and tested running with
+updated raspbian operating system installed on min 8gb SD card with expanded file system
+
+***Note:*** If you are using an older raspbian build or previous Picamera python module,
+and images are black or have problems then update Raspberry PI firmware per
+apt-get update and upgrade or optional firmware raspi-update command.
 
 ### Quick Setup
-From a (putty) SSH login or rpi console desktop terminal execute the following
-commands to upgrade to latest firmware. This should resolve any picamera issues.
-Also it is advised you use at least an 8 GB SD card with file system
-expanded using
+Step 1 Highlight curl command in code box below using mouse left button. Right click mouse in highlighted area and Copy.     
+Step 2 On RPI putty SSH or terminal session right click, select paste then Enter to download and run script.
 
     curl -L https://raw.github.com/pageauc/pi-motion/master/source/setup.sh | bash
 
-Update Raspbian
+### To Update Raspbian
 
     sudo apt-get update
     sudo apt-get upgrade
 
-To Run
+### To Run
 
    ./pimotion.py    
 
