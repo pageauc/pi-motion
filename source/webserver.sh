@@ -4,7 +4,7 @@
 # Add the following command to the /etc/rc.local
 # /home/pi/webserver/webserver.sh start
 
-progpath="/home/pi/webserver"
+progpath="/home/pi/pi-motion"
 progname="webserver.py"
 
 echo "$0 ver 1.1 written by Claude Pageau"
