@@ -25,10 +25,8 @@ wget -O Readme.md -q https://raw.github.com/pageauc/pi-motion/master/Readme.md
 echo "Installing rclone"
 curl -L https://raw.github.com/pageauc/rclone4pi/master/rclone-install.sh | bash
 
-
 chmod +x *py
 chmod +x *sh
-
 dos2unix *sh
 dos2unix *py
 
