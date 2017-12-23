@@ -1,8 +1,7 @@
-# pimotion.py_2.4
+# pimotion.py
 #### Raspberry Pi Python Motion Detect with Rclone syncing to a Storage Service 
 For an updated version of this program see my GitHub pi-timolo project
 at https://github.com/pageauc/pi-timolo
-
 
 ### Prerequisites
 Requires a raspberry pi with a RPI camera module installed and tested running with
