@@ -1,11 +1,10 @@
 #!/bin/bash
 # $0 ver 1.2 written by Claude Pageau
 
-install_Dir="pi-motion"
-
 cd ~
+install_Dir="pi-motion"
 mkdir -p $install_Dir
-cd $install_Dir
+cd "$install_Dir"
 
 installFiles=("Readme.md" "pimotion.py" "pimotion.sh" \
 "makemovie.sh" "mvleavelast.sh" "makedailymovie.sh" "h2mp4.sh" "sync.sh")
