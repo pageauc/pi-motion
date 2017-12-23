@@ -44,5 +44,10 @@ To Run enter commands below in a logged in console session
 
     cd $install_Dir
     ./pimotion.py
+    
+or Run in background if no problems
+
+    ./pimotion.sh start
+    
 
 "
