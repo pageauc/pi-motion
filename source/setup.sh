@@ -7,7 +7,7 @@ mkdir -p $install_Dir
 cd "$install_Dir"
 
 installFiles=("Readme.md" "pimotion.py" "pimotion.sh" \
-"makemovie.sh" "mvleavelast.sh" "makedailymovie.sh" "h2mp4.sh" "sync.sh")
+"makemovie.py" "mvleavelast.sh" "makedailymovie.sh" "h2mp4.sh" "sync.sh")
 
 for fname in "${installFiles[@]}" ; do
     wget_output=$(wget -O $fname -q --show-progress https://raw.github.com/pageauc/pi-motion/master/source/$fname)
