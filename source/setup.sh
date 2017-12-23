@@ -1,5 +1,4 @@
 #!/bin/bash
-<<<<<<< HEAD
 # $0 ver 1.2 written by Claude Pageau
 
 install_Dir="pi-motion"
@@ -58,4 +57,4 @@ echo "    Run pimotion.py with command below to Test.  See Readme.md"
 echo "    for additional instructions"
 echo "sudo ./pimotion.py"
 echo "See Readme.md for setting up gdrive security token"
->>>>>>> a88d4d9572d371960d2bf1308a2bcd6cfb909cef
+
