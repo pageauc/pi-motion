@@ -4,8 +4,8 @@ echo "$0 ver 1.1  written by Claude Pageau"
 # Customize rclone sync variables Below
 # ---------------------------------------
 rcloneName="gdmedia"
-syncRoot="/home/pi"
-localSyncDir="pi-motion/google-drive"
+syncRoot="/home/pi/pi-motion"
+localSyncDir="google-drive"
 remoteSyncDir="pi-motion/images"
 # ---------------------------------------
 
