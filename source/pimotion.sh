@@ -11,14 +11,14 @@
 # This script avoids launching the pimotion.py script more than once
 # since the pi camera hardware cannot be run more than once simultaneously.
 
-progpath="/home/pi/pimotion"
+progpath="/home/pi/pi-motion"
 progname="pimotion.py"
 proglog="verbose.log"
 progsleep=10
 
 echo "$0 ver 1.1 written by Claude Pageau"
 echo "-----------------------------------------------"
-cd $progpath
+cd "$progpath"
 
 # Check if progname exists
 if [ ! -e $progname ] ; then
