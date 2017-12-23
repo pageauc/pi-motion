@@ -6,7 +6,7 @@ install_Dir="pi-motion"
 mkdir -p $install_Dir
 cd "$install_Dir"
 
-installFiles=("pimotion.py" "pimotion.sh" \
+installFiles=("pimotion.py" "pimotion.sh" "webserver.py" "webserver.sh" "webconf.py"\
 "makemovie.py" "mvleavelast.sh" "makedailymovie.sh" "h2mp4.sh" "sync.sh")
 
 for fname in "${installFiles[@]}" ; do
