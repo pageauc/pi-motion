@@ -7,8 +7,8 @@ cd ~
 mkdir -p $install_Dir
 cd install_Dir
 
-installFiles=("Readme.md" "pimotion.py" "pimotion.sh" "pi-timolo.sh" \
-"makeMovie.sh" "mvleavelast.sh" "makedailymovie.sh" "h2mp4.sh" "sync.sh")
+installFiles=("Readme.md" "pimotion.py" "pimotion.sh" \
+"makemovie.sh" "mvleavelast.sh" "makedailymovie.sh" "h2mp4.sh" "sync.sh")
 
 for fname in "${installFiles[@]}" ; do
     wget_output=$(wget -O $fname -q --show-progress https://raw.github.com/pageauc/pi-motion/master/source/$fname)
@@ -28,9 +28,11 @@ curl -L https://raw.github.com/pageauc/rclone4pi/master/rclone-install.sh | bash
 chmod +x *py
 chmod +x *sh
 
-echo "    Downloading and Installing pimotion dependencies."
-echo "    One Moment Please ......."
-sudo apt-get install -y python-picamera python3-picamera python-imaging mencoder dos2unix gpac python-pyexiv2
+dos2unix *sh
+dos2unix *py
+
+echo "    Downloading and Installing pimotion dependencies.  Wait ..."
+sudo apt-get install -y python-picamera python3-picamera python-imaging dos2unix gpac python-pyexiv2
 
 echo "
                    INSTRUCTIONS
