@@ -25,7 +25,7 @@ Step 2 On RPI putty SSH or terminal session right click, select paste then Enter
 
 ### To Run
 
-   ./pimotion.py    
+    ./pimotion.py    
 
 ### Program Description
 
