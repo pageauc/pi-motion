@@ -7,6 +7,11 @@ at https://github.com/pageauc/pi-timolo
 Requires a raspberry pi with a RPI camera module installed and tested running with
 updated raspbian operating system installed on min 8gb SD card with expanded file system
 
+***IMPORTANT:*** Stretch has long exposure low light camera freezing issue that requires a reboot to gain
+control of camera back per https://github.com/waveform80/picamera/issues/528 
+Operation under Jessie works fine.  Will issue update when Stretch issue resolved.  In the mean time
+use Jessie if you require very low light operation of pi-timolo.py
+
 ***Note:*** If you are using an older raspbian build or previous Picamera python module,
 and images are black or have problems then update Raspberry PI firmware per
 apt-get update and upgrade or optional firmware raspi-update command.
